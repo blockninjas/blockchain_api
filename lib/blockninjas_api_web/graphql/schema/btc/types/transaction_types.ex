@@ -13,6 +13,9 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.TransactionTypes do
   @desc "A Bitcoin transaction"
   node object(:transaction) do
     field(:hash, non_null(:string))
+    field(:size_in_bytes, non_null(:integer))
+    field(:lock_time, non_null(:integer))
+    field(:weight, non_null(:integer))
     field(:block, non_null(:block), resolve: dataloader(BtcSource))
   end
 end

@@ -15,6 +15,7 @@ defmodule BlockninjasApi.Btc.Transaction do
     field(:version, SignedInteger, null: false)
     field(:lock_time, SignedInteger, null: false)
     field(:size_in_bytes, :integer, null: false)
+    field(:weight, :integer, null: false)
     belongs_to(:block, Block)
 #    has_many(:inputs, Input)
 #    has_many(:outputs, Output)
@@ -24,8 +25,8 @@ defmodule BlockninjasApi.Btc.Transaction do
   @doc false
   def changeset(%Transaction{} = transaction, attrs) do
     transaction
-    |> cast(attrs, [:hash, :version, :lock_time, :size_in_bytes, :block_id])
-    |> validate_required([:hash, :version, :lock_time, :size_in_bytes, :block_id])
+    |> cast(attrs, [:hash, :version, :lock_time, :size_in_bytes, :weight, :block_id])
+    |> validate_required([:hash, :version, :lock_time, :size_in_bytes, :weight, :block_id])
     |> foreign_key_constraint(:block_id)
   end
 end
