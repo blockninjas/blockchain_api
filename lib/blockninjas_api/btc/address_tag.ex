@@ -11,14 +11,15 @@ defmodule BlockninjasApi.Btc.AddressTag do
 
   schema "address_tags" do
     field(:title, :string, null: false)
-    field(:priority, :integer)
+    field(:priority, :integer, null: false)
+    field(:category, :string)
     belongs_to(:address, Address)
   end
 
   @doc false
   def changeset(%AddressTag{} = address_tags, attrs) do
     address_tags
-    |> cast(attrs, [:title, :priority, :address_id])
+    |> cast(attrs, [:title, :priority, :category, :address_id])
     |> validate_required([:title, :priority, :address_id])
     |> foreign_key_constraint(:address_id)
   end
