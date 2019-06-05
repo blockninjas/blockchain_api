@@ -36,6 +36,13 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.BlockTypes do
   connection(node_type: :block)
 
   object(:btc_block_queries) do
+    @desc "Query a block by either the hash or the height of the block."
+    field :block, :block do
+      arg(:hash, :string)
+      arg(:height, :integer)
+      resolve(&BlocksResolver.find_block/3)
+    end
+
     connection field(:blocks, node_type: :block) do
       resolve(&BlocksResolver.list_blocks/2)
     end
