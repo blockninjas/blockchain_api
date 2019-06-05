@@ -13,24 +13,26 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.BlockTypes do
 
   @desc "A Bitcoin block"
   node object(:block) do
-    field(:hash, non_null(:string))
-    field(:version, non_null(:integer))
-    field(:merkle_root, non_null(:string))
+    field(:hash, non_null(:string), description: "Hash of the block.")
+    field(:version, non_null(:integer), description: "Version of the block.")
+    field(:merkle_root, non_null(:string), description: "Merkle root for the block.")
 
     field(:creation_time, non_null(:naive_datetime),
-      description: "Timestamp when the block has been created in ISO8601 format"
+      description: "ISO8601 timestamp when the block has been created."
     )
 
-    field(:nonce, non_null(:integer), description: "Nonce of the block")
-    field(:height, non_null(:integer), description: "Actual height of the block")
-    field(:transactions, list_of(:transaction), resolve: dataloader(BtcSource))
-    field(:next_block, :block, resolve: dataloader(BtcSource))
+    field(:nonce, non_null(:integer), description: "Nonce of the block.")
+    field(:height, non_null(:integer), description: "Actual height of the block.")
 
-    #    field :gravatar_md5, :string do
-    #      resolve(fn user, _, _ ->
-    #        {:ok, :crypto.hash(:md5, user.email) |> Base.encode16(case: :lower)}
-    #      end)
-    #    end
+    field(:next_block, :block,
+      resolve: dataloader(BtcSource),
+      description: "The next block after this block."
+    )
+
+    field(:transactions, list_of(:transaction),
+      resolve: dataloader(BtcSource),
+      description: "Transactions that belong to the block."
+    )
   end
 
   connection(node_type: :block)
