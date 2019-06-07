@@ -29,14 +29,14 @@ defmodule BlockninjasApi.Btc do
     |> Repo.get_by!(hash: hash)
   end
 
-  @spec get_block_by_height(String.t()) :: %Block{}
+  @spec get_block_by_height(String.t()) :: %Block{} | nil
   def get_block_by_hash(hash) do
     Block
     |> with_next_block()
     |> Repo.get_by(hash: hash)
   end
 
-  @spec get_block_by_height(Integer.t()) :: %Block{}
+  @spec get_block_by_height(integer) :: %Block{} | nil
   def get_block_by_height(height) do
     Block
     |> with_next_block()
