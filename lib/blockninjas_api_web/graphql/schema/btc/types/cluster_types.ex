@@ -13,7 +13,6 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.ClusterTypes do
 
   @desc "A Bitcoin cluster"
   node object(:cluster) do
-    field(:base58check, non_null(:string))
     field(:addresses, list_of(:address), resolve: dataloader(BtcSource))
     field(:tags, list_of(:address_tag), resolve: dataloader(BtcSource))
   end
