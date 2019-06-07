@@ -29,19 +29,22 @@ defmodule BlockninjasApi.Btc do
     |> Repo.get_by!(hash: hash)
   end
 
+  @spec get_block_by_height(String.t()) :: %Block{}
   def get_block_by_hash(hash) do
     Block
     |> with_next_block()
     |> Repo.get_by(hash: hash)
   end
 
+  @spec get_block_by_height(Integer.t()) :: %Block{}
   def get_block_by_height(height) do
     Block
     |> with_next_block()
     |> Repo.get_by(height: height)
   end
 
-  defp with_next_block(query \\ Block) do
+  @spec with_next_block(Block) :: Ecto.Query.t
+  defp with_next_block(query) do
     query
     |> join(:left, [block], next_block in assoc(block, :next_block))
     |> preload([..., next_block], next_block: next_block)

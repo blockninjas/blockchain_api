@@ -7,11 +7,12 @@ defmodule BlockninjasApi.Btc.Address do
   import Ecto.Changeset
 
   alias __MODULE__
+  alias BlockninjasApi.Btc.Cluster
   alias BlockninjasApi.Btc.AddressTag
 
   schema "addresses" do
     field(:base58check, :string, null: false)
-    belongs_to(:cluster, Address, foreign_key: :cluster_representative)
+    belongs_to(:cluster, Cluster, foreign_key: :cluster_representative)
     has_many(:address_tags, AddressTag)
   end
 
