@@ -15,11 +15,11 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.AddressTypes do
   node object(:address) do
     field(:base58check, non_null(:string))
     field(:cluster, non_null(:cluster), resolve: dataloader(BtcSource))
-    field(:address_tags, list_of(:address_tag), resolve: dataloader(BtcSource))
+    field(:address_tags, list_of(:tag), resolve: dataloader(BtcSource))
   end
 
   @desc "A tag for an address"
-  node object(:address_tag) do
+  node object(:tag) do
     field(:title, non_null(:string))
     field(:priority, non_null(:integer))
     field(:category, :string, description: "Category for that tag such as gambling, scam, exchange, and more.")
