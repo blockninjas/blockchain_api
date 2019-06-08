@@ -9,7 +9,7 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.BlockTypes do
   import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   alias BlockninjasApiWeb.Graphql.Schema.Btc.Source, as: BtcSource
-  alias BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.BlocksResolver
+  alias BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.{BlocksResolver, TransactionsResolver}
 
   @desc "A Bitcoin block"
   node object(:block) do
@@ -29,13 +29,13 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.BlockTypes do
       description: "The next block after this block."
     )
 
-    field(:transactions, list_of(:transaction),
-      resolve: dataloader(BtcSource),
-      description: "Transactions that belong to the block."
-    )
+    connection field(:transactions, node_type: :transaction, description: "Transactions that belong to the block.") do
+      resolve(&TransactionsResolver.find_transactions/2)
+    end
   end
 
   connection(node_type: :block)
+  connection(node_type: :transaction)
 
   object(:btc_block_queries) do
     @desc "Query a block by either the hash or the height of the block."
