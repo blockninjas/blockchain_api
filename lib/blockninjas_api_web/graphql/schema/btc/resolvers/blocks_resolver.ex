@@ -7,10 +7,10 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.BlocksResolver do
   alias BlockninjasApi.Btc
   alias BlockninjasApi.Btc.Block
 
-  def list_blocks(args, _) do
+  def list_blocks(pagination_args, _) do
     Block
     |> Ecto.Queryable.to_query()
-    |> Absinthe.Relay.Connection.from_query(&Repo.all/1, args)
+    |> Absinthe.Relay.Connection.from_query(&Repo.all/1, pagination_args)
   end
 
   def find_block(_parent, %{hash: hash}, _resolution) do
