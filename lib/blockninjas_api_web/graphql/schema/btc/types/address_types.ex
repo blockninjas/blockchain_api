@@ -32,8 +32,6 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.AddressTypes do
       resolve(&AddressesResolver.find_address/3)
     end
   end
-
-#  connection(node_type: :address)
 #
 #  object(:btc_address_queries) do
 #    connection field(:addresses, node_type: :address) do

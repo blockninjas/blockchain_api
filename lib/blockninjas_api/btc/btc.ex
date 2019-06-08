@@ -69,4 +69,10 @@ defmodule BlockninjasApi.Btc do
     Address
     |> Repo.get_by(base58check: base58check)
   end
+
+  @spec get_addresses_by_cluster_representative(integer) :: Ecto.Query.t
+  def get_addresses_by_cluster_representative(cluster_representative) do
+    Address
+    |> where(cluster_representative: ^cluster_representative)
+  end
 end

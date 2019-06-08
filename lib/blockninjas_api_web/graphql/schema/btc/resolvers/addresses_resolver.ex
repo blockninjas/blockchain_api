@@ -3,7 +3,7 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.AddressesResolver do
   Resolver functions for addresses of the Bitcoin Blockchain.
   """
 
-  alias BlockninjasApi.Btc
+  alias BlockninjasApi.{Repo, Btc}
 
   def find_address(_parent, %{base58check: base58check}, _resolution) do
     case Btc.get_address(base58check) do
@@ -12,5 +12,12 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.AddressesResolver do
       address ->
         {:ok, address}
     end
+  end
+
+  def find_addresses(pagination_args, %{source: cluster}) do
+    cluster.id
+    |> Btc.get_addresses_by_cluster_representative()
+    |> Ecto.Queryable.to_query()
+    |> Absinthe.Relay.Connection.from_query(&Repo.all/1, pagination_args)
   end
 end
