@@ -20,4 +20,13 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.AddressesResolver do
     |> Ecto.Queryable.to_query()
     |> Absinthe.Relay.Connection.from_query(&Repo.all/1, pagination_args)
   end
+
+  def find_tags_by_cluster(cluster, _, _resolution) do
+    tags =
+      cluster.id
+      |> Btc.get_tags_by_cluster_representative()
+      |> Repo.all()
+
+    {:ok, tags}
+  end
 end

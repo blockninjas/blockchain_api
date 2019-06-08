@@ -6,7 +6,7 @@ defmodule BlockninjasApi.Btc do
   import Ecto.Query, warn: false
 
   alias BlockninjasApi.Repo
-  alias BlockninjasApi.Btc.{Block, Transaction, Address}
+  alias BlockninjasApi.Btc.{Block, Transaction, Address, AddressTag}
 
   @doc """
   Gets a single block.
@@ -74,6 +74,14 @@ defmodule BlockninjasApi.Btc do
   def get_addresses_by_cluster_representative(cluster_representative) do
     Address
     |> where(cluster_representative: ^cluster_representative)
+  end
+
+  @spec get_addresses_by_cluster_representative(integer) :: Ecto.Query.t
+  def get_tags_by_cluster_representative(cluster_representative) do
+    AddressTag
+    |> join(:inner, [tag], address in assoc(tag, :address))
+    |> preload(:address)
+    |> where([_, address], address.cluster_representative == ^cluster_representative)
   end
 
   @spec get_transactions_by_block_id(integer) :: Ecto.Query.t
