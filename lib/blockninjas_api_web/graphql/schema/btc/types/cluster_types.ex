@@ -13,7 +13,7 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.ClusterTypes do
 
   @desc "A Bitcoin cluster"
   node object(:cluster) do
-    connection field :addresses, node_type: :address do
+    connection field(:addresses, node_type: :address, description: "Addresses within this cluster.") do
       resolve(&AddressesResolver.find_addresses/2)
     end
     field(:addresses, list_of(:address), resolve: dataloader(BtcSource))
