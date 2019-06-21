@@ -76,7 +76,7 @@ defmodule BlockninjasApi.Btc do
     |> where(cluster_representative: ^cluster_representative)
   end
 
-  @spec get_addresses_by_cluster_representative(integer) :: Ecto.Query.t
+  @spec get_tags_by_cluster_representative(integer) :: Ecto.Query.t
   def get_tags_by_cluster_representative(cluster_representative) do
     AddressTag
     |> join(:inner, [tag], address in assoc(tag, :address))
