@@ -78,8 +78,8 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.AddressTypes do
     field(:base58check, non_null(:string))
     field(:cluster, non_null(:cluster), resolve: dataloader(BtcSource))
     field(:address_tags, list_of(:tag), resolve: dataloader(BtcSource))
-    field(:outgoing, list_of(:incoming), resolve: dataloader(BtcSource))
-    field(:incoming, list_of(:outgoing), resolve: dataloader(BtcSource))
+    field(:outgoing, list_of(:outgoing), resolve: dataloader(BtcSource))
+    field(:incoming, list_of(:incoming), resolve: dataloader(BtcSource))
 
     # connection field(:incoming, node_type: :input, description: "Incoming transactions to this address.") do
 #      resolve(&AddressesResolver.find_addresses/2)
