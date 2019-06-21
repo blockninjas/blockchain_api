@@ -17,5 +17,8 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.TransactionTypes do
     field(:lock_time, non_null(:integer))
     field(:weight, non_null(:integer))
     field(:block, non_null(:block), resolve: dataloader(BtcSource))
+
+    field(:inputs, list_of(:input), resolve: dataloader(BtcSource))
+    field(:outputs, list_of(:output), resolve: dataloader(BtcSource))
   end
 end

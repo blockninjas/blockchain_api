@@ -12,6 +12,7 @@ defmodule BlockninjasApiWeb.Graphql.Schema do
   import_types(__MODULE__.Btc.Types.TransactionTypes)
   import_types(__MODULE__.Btc.Types.AddressTypes)
   import_types(__MODULE__.Btc.Types.ClusterTypes)
+  import_types(__MODULE__.Btc.Types.InputTypes)
 
   alias __MODULE__.Btc.Source, as: BtcSource
 

@@ -9,6 +9,8 @@ defmodule BlockninjasApi.Btc.Transaction do
   alias __MODULE__
   alias BlockninjasApi.Type.{Hash, SignedInteger}
   alias BlockninjasApi.Btc.Block
+  alias BlockninjasApi.Btc.Output
+  alias BlockninjasApi.Btc.Input
 
   schema "transactions" do
     field(:hash, Hash, null: false)
@@ -17,9 +19,8 @@ defmodule BlockninjasApi.Btc.Transaction do
     field(:size_in_bytes, :integer, null: false)
     field(:weight, :integer, null: false)
     belongs_to(:block, Block)
-#    has_many(:inputs, Input)
-#    has_many(:outputs, Output)
-#    has_one(:output, Output) # used for inputs
+    has_many(:outputs, Output)
+    has_many(:inputs, Input)
   end
 
   @doc false

@@ -2,6 +2,68 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.AddressTypes do
   @moduledoc """
   Specifies Bitcoin addresses as nodes that can be accessed via GraphQL.
   Additional support for the Relay specification when prefixed with the `node` macro.
+
+  query {
+    address(base58check: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa") {
+      base58check
+
+      outgoingContainer {
+        aggregation {
+          sum
+          count
+          firstOccurence
+          lastOccurence
+        }
+        outgoing {
+          value
+          address {
+            base58check
+          }
+        }
+      }
+
+      incomingContainer {
+        aggregation {
+          sum
+          count
+          firstOccurence
+          lastOccurence
+        }
+        incoming {
+          value
+          address {
+            base58check
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+  alternative:
+  query {
+  address(base58check: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa") {
+    base58check
+
+    outgoing(first: 2) { # with relay?
+      aggregation {
+        sum
+        count
+        firstOccurence
+        lastOccurence
+      }
+      edges {
+        node {
+          value
+          address {
+            base58check
+          }
+        }
+      }
+    }
+  }
   """
 
   use Absinthe.Schema.Notation
@@ -16,6 +78,12 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.AddressTypes do
     field(:base58check, non_null(:string))
     field(:cluster, non_null(:cluster), resolve: dataloader(BtcSource))
     field(:address_tags, list_of(:tag), resolve: dataloader(BtcSource))
+    field(:outgoing, list_of(:incoming), resolve: dataloader(BtcSource))
+    field(:incoming, list_of(:outgoing), resolve: dataloader(BtcSource))
+
+    # connection field(:incoming, node_type: :input, description: "Incoming transactions to this address.") do
+#      resolve(&AddressesResolver.find_addresses/2)
+    # end
   end
 
   @desc "A tag for an address"
@@ -32,6 +100,9 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.AddressTypes do
       resolve(&AddressesResolver.find_address/3)
     end
   end
+
+#  connection(node_type: :outgoing)
+
 #
 #  object(:btc_address_queries) do
 #    connection field(:addresses, node_type: :address) do
