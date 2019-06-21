@@ -43,5 +43,6 @@ defmodule BlockninjasApi.Btc.Block do
       :nonce,
       :height
     ])
+    |> validate_number(:height, greater_than_or_equal_to: 0)
   end
 end
