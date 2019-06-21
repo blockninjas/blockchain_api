@@ -7,10 +7,8 @@ defmodule BlockninjasApi.Btc.Input do
   import Ecto.Changeset
 
   alias __MODULE__
-  alias BlockninjasApi.Btc.Transaction
-  alias BlockninjasApi.Btc.Address
+  alias BlockninjasApi.Btc.{Transaction, Address}
 
-  #@primary_key false
   schema "resolved_inputs" do
     field(:base58check, :string, null: false)
     field(:value, :integer, null: false)

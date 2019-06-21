@@ -12,7 +12,7 @@ defmodule BlockninjasApi.Btc.AddressTag do
   schema "address_tags" do
     field(:title, :string, null: false)
     field(:priority, :integer, null: false)
-    field(:category, :string)
+    field(:category, :string, null: false)
     belongs_to(:address, Address)
   end
 

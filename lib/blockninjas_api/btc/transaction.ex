@@ -1,6 +1,6 @@
 defmodule BlockninjasApi.Btc.Transaction do
   @moduledoc """
-  Represents a transaction of the Bitcoin Blockchain.
+  Represents a transaction that belongs to a block of the Bitcoin Blockchain.
   """
 
   use Ecto.Schema
@@ -8,9 +8,7 @@ defmodule BlockninjasApi.Btc.Transaction do
 
   alias __MODULE__
   alias BlockninjasApi.Type.{Hash, SignedInteger}
-  alias BlockninjasApi.Btc.Block
-  alias BlockninjasApi.Btc.Output
-  alias BlockninjasApi.Btc.Input
+  alias BlockninjasApi.Btc.{Block, Output, Input}
 
   schema "transactions" do
     field(:hash, Hash, null: false)

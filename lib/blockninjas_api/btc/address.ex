@@ -7,10 +7,7 @@ defmodule BlockninjasApi.Btc.Address do
   import Ecto.Changeset
 
   alias __MODULE__
-  alias BlockninjasApi.Btc.Cluster
-  alias BlockninjasApi.Btc.AddressTag
-  alias BlockninjasApi.Btc.Input
-  alias BlockninjasApi.Btc.OutputAddress
+  alias BlockninjasApi.Btc.{Cluster, AddressTag, Input, OutputAddress}
 
   schema "addresses" do
     field(:base58check, :string, null: false)
@@ -19,9 +16,6 @@ defmodule BlockninjasApi.Btc.Address do
     has_many(:outgoing, Input, foreign_key: :base58check, references: :base58check)
     has_many(:output_addresses, OutputAddress, foreign_key: :base58check, references: :base58check)
     has_many(:incoming, through: [:output_addresses, :output])
-
-    # has_one(:output_address, OutputAddress, foreign_key: :output_id)
-    # has_one(:address, through: [:output_address, :address])
   end
 
   @doc false
