@@ -18,6 +18,7 @@ defmodule BlockninjasApi.Btc.Address do
     has_many(:address_tags, AddressTag)
     has_many(:outgoing, Input, foreign_key: :base58check, references: :base58check)
     has_many(:output_addresses, OutputAddress, foreign_key: :base58check, references: :base58check)
+    has_many(:incoming, Input, foreign_key: :base58check, references: :base58check)
   end
 
   @doc false

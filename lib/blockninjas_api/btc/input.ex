@@ -8,6 +8,7 @@ defmodule BlockninjasApi.Btc.Input do
 
   alias __MODULE__
   alias BlockninjasApi.Btc.Transaction
+  alias BlockninjasApi.Btc.Address
 
   #@primary_key false
   schema "resolved_inputs" do
@@ -15,7 +16,7 @@ defmodule BlockninjasApi.Btc.Input do
     field(:value, :integer, null: false)
     field(:script, :string, null: false)
     belongs_to(:transaction, Transaction)
-    #belongs_to(:address, Address, foreign_key: :base58check)
+    has_one(:address, Address, foreign_key: :base58check, references: :base58check)
   end
 
   @doc false
