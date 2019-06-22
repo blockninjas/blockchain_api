@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :blockninjas_api, BlockninjasApi.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "",
   database: "blockninjas_api_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
