@@ -1,5 +1,7 @@
 # Blockchain API
 
+[![Build Status](https://travis-ci.org/blockninjas/blockchain_api.svg?branch=master)](https://travis-ci.org/blockninjas/blockchain_api)
+
 The `blockchain_api`
 
 * leverages (bitcoin) blockchain data from a Postgres database that has been imported with our 
