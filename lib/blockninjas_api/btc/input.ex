@@ -18,7 +18,7 @@ defmodule BlockninjasApi.Btc.Input do
   end
 
   @doc false
-  def changeset(%Input{} = input, attrs) do
+  def changeset(%Input{} = input, _attrs) do
     input
   end
 end

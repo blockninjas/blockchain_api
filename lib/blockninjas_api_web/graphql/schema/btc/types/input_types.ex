@@ -73,15 +73,11 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.InputTypes do
   import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   alias BlockninjasApiWeb.Graphql.Schema.Btc.Source, as: BtcSource
-  alias BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.AddressesResolver
 
   @desc "Outgoing transactions from a Bitcoin address"
   node object(:outgoing) do
-    #field(:base58check, non_null(:string))
     field(:value, non_null(:integer), description: "Satoshi")
     field(:transaction, non_null(:transaction), resolve: dataloader(BtcSource))
-    #field(:cluster, non_null(:cluster), resolve: dataloader(BtcSource))
-    #field(:address_tags, list_of(:tag), resolve: dataloader(BtcSource))
   end
 
   @desc "Incoming transactions to a Bitcoin address"
