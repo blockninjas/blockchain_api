@@ -77,7 +77,7 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.AddressTypes do
   node object(:address) do
     field(:base58check, non_null(:string))
     field(:cluster, non_null(:cluster), resolve: dataloader(BtcSource))
-    field(:address_tags, list_of(:tag), resolve: dataloader(BtcSource))
+    field(:tags, list_of(:tag), resolve: dataloader(BtcSource))
     field(:outgoing, list_of(:outgoing), resolve: dataloader(BtcSource))
     field(:incoming, list_of(:incoming), resolve: dataloader(BtcSource))
 
