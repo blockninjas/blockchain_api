@@ -36,8 +36,8 @@ making it easier to find software discrepancies in our code base. It can be star
     $ mix dialyzer
     
     
-Furthermore, [credo](https://github.com/rrrene/credo) is used to improve code consistency 
-and can also be started as mix task via:
+Furthermore, [credo](https://github.com/rrrene/credo) is used to improve code consistency which can 
+also be started as mix task via:
 
     $ mix credo
     
