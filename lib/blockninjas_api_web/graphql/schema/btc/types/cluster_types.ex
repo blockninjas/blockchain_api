@@ -17,8 +17,6 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.ClusterTypes do
       resolve(&AddressesResolver.find_addresses/2)
     end
 
-    field(:addresses, list_of(:address), resolve: dataloader(BtcSource))
-
     field(:tags, list_of(:tag), description: "Tags within this cluster.") do
       resolve(&AddressesResolver.find_tags_by_cluster/3)
     end
