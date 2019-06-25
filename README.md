@@ -1,6 +1,7 @@
 # Blockchain API
 
 [![Build Status](https://travis-ci.org/blockninjas/blockchain_api.svg?branch=master)](https://travis-ci.org/blockninjas/blockchain_api)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 The `blockchain_api`
 
