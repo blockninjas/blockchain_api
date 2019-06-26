@@ -46,4 +46,6 @@ also be started as mix task via:
     
 ## Testing
 
-TODO 
+All tests can be executed as mix task via:
+
+    $ mix test 
