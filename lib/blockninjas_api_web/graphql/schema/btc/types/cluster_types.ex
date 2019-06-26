@@ -6,9 +6,7 @@ defmodule BlockninjasApiWeb.Graphql.Schema.Btc.Types.ClusterTypes do
 
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
-  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
-  alias BlockninjasApiWeb.Graphql.Schema.Btc.Source, as: BtcSource
   alias BlockninjasApiWeb.Graphql.Schema.Btc.Resolvers.AddressesResolver
 
   @desc "A Bitcoin cluster"

@@ -4,9 +4,7 @@ defmodule BlockninjasApi.Btc.Input do
   """
 
   use Ecto.Schema
-  import Ecto.Changeset
-
-  alias __MODULE__
+  
   alias BlockninjasApi.Btc.{Transaction, Address}
 
   schema "resolved_inputs" do
@@ -15,10 +13,5 @@ defmodule BlockninjasApi.Btc.Input do
     field(:script, :string, null: false)
     belongs_to(:transaction, Transaction)
     has_one(:address, Address, foreign_key: :base58check, references: :base58check)
-  end
-
-  @doc false
-  def changeset(%Input{} = input, _attrs) do
-    input
   end
 end
