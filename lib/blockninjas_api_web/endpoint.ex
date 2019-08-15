@@ -42,5 +42,8 @@ defmodule BlockninjasApiWeb.Endpoint do
     key: "_blockninjas_api_key",
     signing_salt: "Etl3sduH"
 
+  # Enable CORS without origin restrictions
+  plug CORSPlug
+
   plug BlockninjasApiWeb.Router
 end

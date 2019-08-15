@@ -54,6 +54,9 @@ defmodule BlockninjasApi.MixProject do
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_relay, "~> 1.4"},
       {:dataloader, "~> 1.0"},
+
+      # Security
+      {:cors_plug, "~> 2.0"},
     ]
   end
 
