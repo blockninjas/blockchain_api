@@ -10,7 +10,7 @@ defmodule BlockninjasApi.Type.SignedIntegerTest do
   end
 
   test "load signed integer" do
-    assert SignedInteger.load(2083236893) == {:ok, 2083236893}
+    assert SignedInteger.load(2_083_236_893) == {:ok, 2_083_236_893}
     assert SignedInteger.load(0) == {:ok, 0}
   end
 
