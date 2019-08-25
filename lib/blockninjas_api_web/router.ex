@@ -13,12 +13,6 @@ defmodule BlockninjasApiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", BlockninjasApiWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   scope "/api" do
     pipe_through :api
     # pipe_through(:security)
